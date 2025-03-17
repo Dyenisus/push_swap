@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 21:37:19 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/16 22:43:43 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:30:39 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "free.h"
 
 void	push(t_stack *stack, int nbr, bool *flag);
-int	pop(t_stack *stack, bool *flag);
+int		pop(t_stack *stack, bool *flag);
 void	write_op(const char *str);
 void	pa(t_stack *a, t_stack *b, bool *flag);
 void	pb(t_stack *b, t_stack *a, bool *flag);

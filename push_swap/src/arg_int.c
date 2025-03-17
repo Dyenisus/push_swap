@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 22:42:19 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/16 22:57:10 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:41:08 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static	long long	ft_atol(const char *str)
 
 static	int	*add_lst(char **splitted, int *nbr_lst)
 {
-	int				i;
-	long	long	result;
+	int			i;
+	long long	result;
 
 	if (!splitted || !*splitted || !nbr_lst)
 	{

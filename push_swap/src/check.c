@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 21:03:20 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/16 20:58:19 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:39:59 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,3 @@ int	is_same_half(t_node *node, t_node *target, t_stack *a, t_stack *b)
 		return (2);
 	return (0);
 }
-

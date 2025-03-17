@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 13:26:49 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/16 22:46:52 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:33:29 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 t_node	*find_target_b(t_stack *target_stack, t_node *node)
 {
-	t_node *target;
-	t_node *temp;
+	t_node	*target;
+	t_node	*temp;
 
 	if (is_stack_empty(target_stack) || !node)
 		return (NULL);
 	find_max_min(target_stack);
 	if (!target_stack->max || !target_stack->min)
 		return (NULL);
-	if (node->number > target_stack->max->number 
+	if (node->number > target_stack->max->number
 		|| node->number < target_stack->min->number)
 		return (target_stack->max);
 	target = NULL;
@@ -41,15 +41,15 @@ t_node	*find_target_b(t_stack *target_stack, t_node *node)
 
 t_node	*find_target_a(t_stack *target_stack, t_node *node)
 {
-	t_node *target;
-	t_node *temp;
+	t_node	*target;
+	t_node	*temp;
 
 	if (is_stack_empty(target_stack) || !node)
 		return (NULL);
 	find_max_min(target_stack);
 	if (!target_stack->max || !target_stack->min)
 		return (NULL);
-	if (node->number < target_stack->min->number 
+	if (node->number < target_stack->min->number
 		|| node->number > target_stack->max->number)
 		return (target_stack->min);
 	target = NULL;

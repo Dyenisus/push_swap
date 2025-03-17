@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 14:04:14 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/16 20:53:17 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:40:51 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static	int	calculate_cost(t_node *node, t_node *target, t_stack *a, t_stack *b)
 
 static	void	calculate_all_cost(t_stack *a, t_stack *b, bool *flag)
 {
-	t_node *current;
-	t_node *target;
+	t_node	*current;
+	t_node	*target;
 
 	set_positions(a);
 	set_positions(b);
@@ -67,8 +67,8 @@ static	void	calculate_all_cost(t_stack *a, t_stack *b, bool *flag)
 
 t_node	*find_cheapest_b(t_stack *a, t_stack *b, bool *flag)
 {
-	t_node *current;
-	t_node *cheapest;
+	t_node	*current;
+	t_node	*cheapest;
 
 	if (is_stack_empty(a) || is_stack_empty(b))
 		return (NULL);

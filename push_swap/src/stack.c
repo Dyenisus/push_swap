@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 20:51:33 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/15 16:37:03 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:33:59 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ t_stack	*init_stack(void)
 t_node	*get_last_node(t_stack *stack)
 {
 	t_node	*last;
-	
+
 	if (is_stack_empty(stack))
 		return (NULL);
 	last = stack->top;
 	while (last->next)
-	last = last->next;
+		last = last->next;
 	return (last);
 }

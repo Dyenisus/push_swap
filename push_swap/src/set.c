@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 16:36:38 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/16 17:42:04 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:40:12 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ void	find_min(t_stack *stack)
 
 void	find_max_min(t_stack *stack)
 {
-	find_max(stack);	
+	find_max(stack);
 	find_min(stack);
 }

@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 20:46:15 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/15 16:42:49 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:32:33 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@
 
 typedef struct s_node
 {
-	struct	s_node	*next;
-	struct	s_node	*target;
+	struct s_node	*next;
+	struct s_node	*target;
 	int				number;
 	int				cost;
 	int				position;
 }	t_node;
 
-typedef	struct s_stack
+typedef struct s_stack
 {
 	t_node	*top;
 	t_node	*max;

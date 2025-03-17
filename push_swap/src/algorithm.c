@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 13:10:51 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/16 22:51:04 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:40:31 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static	void	optimal_push_to_a(t_stack *a, t_stack *b, bool *flag)
 static	void	sort_three(t_stack *a, bool *flag)
 {
 	t_node	*biggest;
-	
+
 	find_max(a);
 	if (!a->max)
 	{
@@ -89,26 +89,6 @@ static	void	push_to_b(t_stack *a, t_stack *b, bool *flag)
 		return ;
 }
 
-void print_stack(t_stack *stack, char *name)
-{
-    t_node *temp;
-    
-    if (!stack || !stack->top)
-    {
-        printf("%s: (empty)\n", name);
-        return;
-    }
-
-    printf("%s (Top -> Bottom): ", name);
-    temp = stack->top;
-    while (temp)
-    {
-        printf("%d ", temp->number);
-        temp = temp->next;
-    }
-    printf("\n");
-}
-
 void	turk_algorithm(t_stack *a, t_stack *b, bool *flag)
 {
 	if (is_stack_empty(a))
@@ -124,14 +104,14 @@ void	turk_algorithm(t_stack *a, t_stack *b, bool *flag)
 		return ;
 	}
 	else if (a->size > 3)
-		push_to_b(a, b, flag); // target is smaller than node but biggest among smaller numbers
+		push_to_b(a, b, flag);
 	if (!*flag)
 		return ;
 	if (!is_sorted(a, a->top))
 		sort_three(a, flag);
 	if (!*flag)
 		return ;
-	optimal_push_to_a(a, b, flag); // target is bigger than node but smallest among bigger number
+	optimal_push_to_a(a, b, flag);
 	if (!*flag)
 		return ;
 	if (!is_sorted(a, a->top))
