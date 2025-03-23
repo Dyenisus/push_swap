@@ -6,11 +6,11 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 20:51:33 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/17 10:33:59 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/22 20:14:05 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 t_node	*init_node(int nbr)
 {

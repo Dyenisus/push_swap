@@ -6,11 +6,11 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 22:50:24 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/16 23:02:38 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/22 20:12:34 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	main(int argc, char **argv)
 {

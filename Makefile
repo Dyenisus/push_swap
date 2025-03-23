@@ -8,7 +8,7 @@ SRC_DIR := src
 SRCS := $(shell find $(SRC_DIR) -name "*.c")
 OBJS := $(SRCS:.c=.o)
 
-INCLUDES := -I lib -I $(LIBFT_DIR)
+INCLUDES := -I lib -I $(LIBFT_DIR) -I .
 
 # Colors for output
 GREEN := \033[0;32m

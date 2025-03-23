@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 20:59:06 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/15 17:12:43 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/22 20:11:09 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	free_chr(char **double_arr, char *arr)
 		while (double_arr[i])
 			free(double_arr[i++]);
 		free(double_arr);
-		*double_arr = NULL;
 		double_arr = NULL;
 	}
 	if (arr)

@@ -6,11 +6,11 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 16:36:38 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/17 10:40:12 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/22 20:14:02 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	set_positions(t_stack *stack)
 {
