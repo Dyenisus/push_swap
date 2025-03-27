@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 22:11:17 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/16 21:36:20 by yesoytur         ###   ########.fr       */
+/*   Created: 2025/03/26 23:55:14 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/27 00:21:05 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "operations.h"
+#include "../push_swap.h"
 
-static	void	rotate(t_stack *stack, bool *flag)
+static void	rotate(t_stack *stack)
 {
 	t_node	*first;
 	t_node	*last;
@@ -21,39 +21,28 @@ static	void	rotate(t_stack *stack, bool *flag)
 		return ;
 	last = get_last_node(stack);
 	if (!last)
-	{
-		*flag = false;
 		return ;
-	}
 	first = stack->top;
 	stack->top = first->next;
 	first->next = NULL;
 	last->next = first;
 }
 
-void	ra(t_stack *a, bool *flag)
+void	ra(t_stack *a)
 {
-	rotate(a, flag);
-	if (!*flag)
-		return ;
+	rotate(a);
 	write_op("ra");
 }
 
-void	rb(t_stack *b, bool *flag)
+void	rb(t_stack *b)
 {
-	rotate(b, flag);
-	if (!*flag)
-		return ;
+	rotate(b);
 	write_op("rb");
 }
 
-void	rr(t_stack *a, t_stack *b, bool *flag)
+void	rr(t_stack *a, t_stack *b)
 {
-	rotate(a, flag);
-	if (!*flag)
-		return ;
-	rotate(b, flag);
-	if (!*flag)
-		return ;
+	rotate(a);
+	rotate(b);
 	write_op("rr");
 }

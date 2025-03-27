@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 23:54:49 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/27 00:03:07 by yesoytur         ###   ########.fr       */
+/*   Created: 2024/10/28 13:14:35 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/19 18:37:53 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../libft.h"
 
-void	pa(t_stack *a, t_stack *b)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	number;
+	size_t	len_s1;
+	size_t	len_s2;
+	char	*n_s;
 
-	if (is_stack_empty(b))
-		return ;
-	number = pop(b);
-	push(a, number);
-	write_op("pa");
-}
-
-void	pb(t_stack *b, t_stack *a)
-{
-	int	number;
-
-	if (is_stack_empty(a))
-		return ;
-	number = pop(a);
-	push(b, number);
-	write_op("pb");
+	if (!s1 || !s2)
+		return (0);
+	else
+	{
+		len_s1 = ft_strlen(s1);
+		len_s2 = ft_strlen(s2);
+		n_s = (char *)malloc((len_s1 + len_s2 + 1) * sizeof(char));
+		if (!n_s)
+			return (NULL);
+		ft_strlcpy(n_s, s1, len_s1 + 1);
+		ft_strlcat(n_s, s2, len_s1 + len_s2 + 1);
+	}
+	return (n_s);
 }

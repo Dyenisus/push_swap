@@ -1,46 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 23:56:01 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/27 00:21:48 by yesoytur         ###   ########.fr       */
+/*   Created: 2025/03/26 21:32:20 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/27 14:46:24 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	swap(t_stack *stack)
+int	main(int argc, char **argv)
 {
-	t_node	*first;
-	t_node	*second;
+	t_stack	*a;
+	t_stack	*b;
 
-	if (!is_at_least_two(stack))
-		return ;
-	first = stack->top;
-	second = stack->top->next;
-	first->next = second->next;
-	second->next = first;
-	stack->top = second;
-}
-
-void	sa(t_stack *a)
-{
-	swap(a);
-	write_op("sa");
-}
-
-void	sb(t_stack *b)
-{
-	swap(b);
-	write_op("sb");
-}
-
-void	ss(t_stack *a, t_stack *b)
-{
-	swap(a);
-	swap(b);
-	write_op("ss");
+	if (argc < 2)
+		return (0);
+	a = init_a(argv);
+	b = init_stack();
+	if (!b)
+	{
+		free_stack(a);
+		exit_msg("Error: Stack 'b' cannot be initialized\n");
+	}
+	turk_algorithm(a, b);
+	free_stack(a);
+	free_stack(b);
+	return (0);
 }

@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 23:54:49 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/27 00:03:07 by yesoytur         ###   ########.fr       */
+/*   Created: 2024/12/30 13:55:45 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/19 19:56:22 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	pa(t_stack *a, t_stack *b)
-{
-	int	number;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-	if (is_stack_empty(b))
-		return ;
-	number = pop(b);
-	push(a, number);
-	write_op("pa");
-}
+# include <stdlib.h>
+# include <unistd.h>
+# include "libft.h"
 
-void	pb(t_stack *b, t_stack *a)
-{
-	int	number;
+char	*ft_reader(int fd, char	*buffer);
+char	*ft_liner(char **buffer);
+void	ft_manager(int i, char **buffer);
+char	*ft_helper(char *buffer, char *temp);
+char	*get_next_line(int fd);
 
-	if (is_stack_empty(a))
-		return ;
-	number = pop(a);
-	push(b, number);
-	write_op("pb");
-}
+#endif

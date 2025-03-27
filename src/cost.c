@@ -5,83 +5,60 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/16 14:04:14 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/17 10:40:51 by yesoytur         ###   ########.fr       */
+/*   Created: 2025/03/27 13:01:55 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/27 18:49:06 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "algorithm.h"
+#include "../push_swap.h"
 
-static	int	calculate_move(t_stack *target_stack, t_node *target)
+int	calculate_move(t_stack *stack, t_node *node)
 {
-	int		move_count;
-
-	move_count = target->position;
-	if (move_count == -1)
-		return (-1);
-	if (move_count >= target_stack->size / 2)
-		move_count = target_stack->size - move_count;
-	return (move_count);
+	if (node->position <= stack->size / 2)
+		return (node->position); // rotate up (ra/rb)
+	else
+		return (-(stack->size - node->position)); // reverse rotate (rra/rrb)
 }
 
-static	int	calculate_cost(t_node *node, t_node *target, t_stack *a, t_stack *b)
+int	calculate_cost(t_node *node, t_node *target, t_stack *s1, t_stack *s2)
 {
-	int	count_a;
-	int	count_b;
+	int	cost_s1;
+	int	cost_s2;
 
-	count_a = calculate_move(a, node);
-	if (count_a == -1)
-		return (-1);
-	count_b = calculate_move(b, target);
-	if (count_b == -1)
-		return (-1);
-	if (is_same_half(node, target, a, b))
-	{
-		if (count_a > count_b)
-			return (count_a);
-		return (count_b);
-	}
-	return (count_a + count_b);
+	cost_s1 = calculate_move(s1, node);
+	cost_s2 = calculate_move(s2, target);
+	if (cost_s1 >= 0 && cost_s2 >= 0)
+		return (max(cost_s1, cost_s2)); // use rr
+	else if (cost_s1 < 0 && cost_s2 < 0)
+		return (max(-cost_s1, -cost_s2)); // use rrr
+	else
+		return (abs(cost_s1) + abs(cost_s2)); // rotate separately
 }
 
-static	void	calculate_all_cost(t_stack *a, t_stack *b, bool *flag)
-{
-	t_node	*current;
-	t_node	*target;
-
-	set_positions(a);
-	set_positions(b);
-	current = a->top;
-	while (current)
-	{
-		target = find_target_b(b, current);
-		current->cost = calculate_cost(current, target, a, b);
-		if (current->cost == -1)
-		{
-			*flag = false;
-			return ;
-		}
-		current = current->next;
-	}
-}
-
-t_node	*find_cheapest_b(t_stack *a, t_stack *b, bool *flag)
+t_node	*find_cheap(t_stack *s, t_stack *s1, t_node *(*f)(t_stack *, t_node *))
 {
 	t_node	*current;
 	t_node	*cheapest;
+	int		lowest_cost;
+	int		current_cost;
 
-	if (is_stack_empty(a) || is_stack_empty(b))
+	if (!s1 || !s1->top)
 		return (NULL);
-	calculate_all_cost(a, b, flag);
-	find_max_min(b);
-	cheapest = a->top;
-	current = a->top;
+	set_positions(s);
+	set_positions(s1);
+	current = s1->top;
+	cheapest = NULL;
+	lowest_cost = INT_MAX;
 	while (current)
 	{
-		if (current->cost < cheapest->cost)
+		current->target = f(s, current);
+		current_cost = calculate_cost(current, current->target, s1, s);
+		if (current_cost < lowest_cost)
+		{
+			lowest_cost = current_cost;
 			cheapest = current;
+		}
 		current = current->next;
 	}
-	cheapest->target = find_target_b(b, cheapest);
 	return (cheapest);
 }

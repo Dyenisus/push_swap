@@ -1,46 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 23:56:01 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/27 00:21:48 by yesoytur         ###   ########.fr       */
+/*   Created: 2024/10/28 12:58:35 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/19 19:44:51 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../libft.h"
 
-static void	swap(t_stack *stack)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_node	*first;
-	t_node	*second;
+	t_list	*last;
 
-	if (!is_at_least_two(stack))
+	if (!lst || !new)
 		return ;
-	first = stack->top;
-	second = stack->top->next;
-	first->next = second->next;
-	second->next = first;
-	stack->top = second;
-}
-
-void	sa(t_stack *a)
-{
-	swap(a);
-	write_op("sa");
-}
-
-void	sb(t_stack *b)
-{
-	swap(b);
-	write_op("sb");
-}
-
-void	ss(t_stack *a, t_stack *b)
-{
-	swap(a);
-	swap(b);
-	write_op("ss");
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	last = ft_lstlast(*lst);
+	last -> next = new;
 }

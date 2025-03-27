@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 23:54:49 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/27 00:03:07 by yesoytur         ###   ########.fr       */
+/*   Created: 2024/10/28 13:22:28 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/19 18:38:19 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../libft.h"
 
-void	pa(t_stack *a, t_stack *b)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	number;
+	size_t	n_len;
+	char	*n_s;
 
-	if (is_stack_empty(b))
-		return ;
-	number = pop(b);
-	push(a, number);
-	write_op("pa");
-}
-
-void	pb(t_stack *b, t_stack *a)
-{
-	int	number;
-
-	if (is_stack_empty(a))
-		return ;
-	number = pop(a);
-	push(b, number);
-	write_op("pb");
+	n_len = ft_strlen(s);
+	if (!s || start >= n_len)
+		return ((char *)ft_calloc(1, sizeof(char)));
+	if (start + len > n_len)
+		len = n_len - start;
+	n_s = (char *)malloc((len + 1) * sizeof(char));
+	if (!n_s)
+		return (NULL);
+	ft_strlcpy(n_s, s + start, len + 1);
+	return (n_s);
 }

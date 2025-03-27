@@ -5,63 +5,65 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/16 13:26:49 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/17 10:33:29 by yesoytur         ###   ########.fr       */
+/*   Created: 2025/03/27 13:19:57 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/27 18:58:19 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "algorithm.h"
+#include "../push_swap.h"
 
-t_node	*find_target_b(t_stack *target_stack, t_node *node)
+t_node	*find_target_b(t_stack *b, t_node *node)
 {
+	t_node	*current;
 	t_node	*target;
-	t_node	*temp;
+	t_node	*max;
+	t_node	*min;
 
-	if (is_stack_empty(target_stack) || !node)
+	if (!b || !b->top || !node)
 		return (NULL);
-	find_max_min(target_stack);
-	if (!target_stack->max || !target_stack->min)
-		return (NULL);
-	if (node->number > target_stack->max->number
-		|| node->number < target_stack->min->number)
-		return (target_stack->max);
+	set_positions(b);
+	max = get_max_or_min(b, b->top, b->top, 1);
+	min = get_max_or_min(b, b->top, b->top, 0);
+	if (node->number > max->number || node->number < min->number)
+		return (max);
 	target = NULL;
-	temp = target_stack->top;
-	while (temp)
+	current = b->top;
+	while (current)
 	{
-		if (temp->number < node->number)
+		if (node->number > current->number)
 		{
-			if (!target || temp->number > target->number)
-				target = temp;
+			if (!target || current->number > target->number)
+				target = current;
 		}
-		temp = temp->next;
+		current = current->next;
 	}
 	return (target);
 }
 
-t_node	*find_target_a(t_stack *target_stack, t_node *node)
+t_node	*find_target_a(t_stack *a, t_node *node)
 {
+	t_node	*current;
 	t_node	*target;
-	t_node	*temp;
+	t_node	*max;
+	t_node	*min;
 
-	if (is_stack_empty(target_stack) || !node)
+	if (!a || !a->top || !node)
 		return (NULL);
-	find_max_min(target_stack);
-	if (!target_stack->max || !target_stack->min)
-		return (NULL);
-	if (node->number < target_stack->min->number
-		|| node->number > target_stack->max->number)
-		return (target_stack->min);
+	set_positions(a);
+	max = get_max_or_min(a, a->top, a->top, 1);
+	min = get_max_or_min(a, a->top, a->top, 0);
+	if (node->number < min->number || node->number > max->number)
+		return (min);
 	target = NULL;
-	temp = target_stack->top;
-	while (temp)
+	current = a->top;
+	while (current)
 	{
-		if (temp->number > node->number)
+		if (node->number < current->number)
 		{
-			if (!target || temp->number < target->number)
-				target = temp;
+			if (!target || current->number < target->number)
+				target = current;
 		}
-		temp = temp->next;
+		current = current->next;
 	}
 	return (target);
 }

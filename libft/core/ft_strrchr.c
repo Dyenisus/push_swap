@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 23:54:49 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/27 00:03:07 by yesoytur         ###   ########.fr       */
+/*   Created: 2024/10/28 13:19:44 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/19 18:38:13 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../libft.h"
 
-void	pa(t_stack *a, t_stack *b)
+char	*ft_strrchr(const char *s, int c)
 {
-	int	number;
+	int				i;
+	unsigned char	chr;
 
-	if (is_stack_empty(b))
-		return ;
-	number = pop(b);
-	push(a, number);
-	write_op("pa");
-}
-
-void	pb(t_stack *b, t_stack *a)
-{
-	int	number;
-
-	if (is_stack_empty(a))
-		return ;
-	number = pop(a);
-	push(b, number);
-	write_op("pb");
+	chr = (unsigned char)c;
+	i = ft_strlen(s);
+	while (i >= 0)
+	{
+		if (s[i] == chr)
+			return ((char *)&s[i]);
+		i--;
+	}
+	return (NULL);
 }

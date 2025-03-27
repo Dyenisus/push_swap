@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 21:03:20 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/17 10:39:59 by yesoytur         ###   ########.fr       */
+/*   Created: 2025/03/27 01:03:19 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/27 15:11:51 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "operations.h"
+#include "../push_swap.h"
 
 int	is_stack_empty(t_stack *stack)
 {
@@ -26,24 +26,18 @@ int	is_at_least_two(t_stack *stack)
 	return (1);
 }
 
-int	is_sorted(t_stack *stack, t_node *top)
+int	is_sorted(t_stack *stack)
 {
-	if (!is_at_least_two(stack))
+	t_node	*temp;
+
+	if (is_stack_empty(stack))
 		return (1);
-	while (top->next)
+	temp = stack->top;
+	while (temp->next)
 	{
-		if (top->number > top->next->number)
+		if (temp->number > temp->next->number)
 			return (0);
-		top = top->next;
+		temp = temp->next;
 	}
 	return (1);
-}
-
-int	is_same_half(t_node *node, t_node *target, t_stack *a, t_stack *b)
-{
-	if ((node->position <= a->size / 2 && target->position <= b->size / 2))
-		return (1);
-	if ((node->position > a->size / 2 && target->position > b->size / 2))
-		return (2);
-	return (0);
 }

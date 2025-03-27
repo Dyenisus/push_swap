@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 23:54:49 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/27 00:03:07 by yesoytur         ###   ########.fr       */
+/*   Created: 2024/10/28 13:18:00 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/19 18:38:08 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../libft.h"
 
-void	pa(t_stack *a, t_stack *b)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	number;
+	size_t	i;
 
-	if (is_stack_empty(b))
-		return ;
-	number = pop(b);
-	push(a, number);
-	write_op("pa");
-}
-
-void	pb(t_stack *b, t_stack *a)
-{
-	int	number;
-
-	if (is_stack_empty(a))
-		return ;
-	number = pop(a);
-	push(b, number);
-	write_op("pb");
+	if (n == 0)
+		return (0);
+	i = 0;
+	while (i < n)
+	{
+		if (!s1[i] || !s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
 }

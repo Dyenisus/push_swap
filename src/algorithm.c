@@ -5,115 +5,81 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/16 13:10:51 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/17 10:40:31 by yesoytur         ###   ########.fr       */
+/*   Created: 2025/03/27 00:24:01 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/27 19:26:55 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "algorithm.h"
+#include "../push_swap.h"
 
-static	void	ensure_sort(t_stack *a, bool *flag)
+static void	push_to_b(t_stack *a, t_stack *b)
 {
-	find_min(a);
-	if (!a->min)
-	{
-		*flag = false;
-		return ;
-	}
-	default_rotate_a(a, a->min, flag);
-	if (!*flag)
-		return ;
-}
+	t_node	*cheapest;
 
-static	void	optimal_push_to_a(t_stack *a, t_stack *b, bool *flag)
-{
-	t_node	*temp;
-
-	if (is_stack_empty(b))
-		return ;
-	while (!is_stack_empty(b))
+	while (a->size > 3 && b->size < 2)
+		pb(b, a);
+	while (a->size > 3)
 	{
-		temp = b->top;
-		temp->target = find_target_a(a, temp);
-		if (!temp->target)
-		{
-			*flag = false;
-			return ;
-		}
-		default_rotate_a(a, temp->target, flag);
-		if (!*flag)
-			return ;
-		pa(a, b, flag);
-		if (!*flag)
-			return ;
+		cheapest = find_cheap(b, a, find_target_b);
+		move_stacks(a, b, cheapest, cheapest->target);
+		pb(b, a);
 	}
 }
 
-static	void	sort_three(t_stack *a, bool *flag)
+static void	sort_three(t_stack *stack)
 {
 	t_node	*biggest;
 
-	find_max(a);
-	if (!a->max)
-	{
-		*flag = false;
+	if (is_sorted(stack) || stack->size != 3)
 		return ;
-	}
-	biggest = a->max;
-	if (biggest == a->top)
-		ra(a, flag);
-	else if (biggest == a->top->next)
-		rra(a, flag);
-	if (!*flag)
-		return ;
-	if (a->top->number > a->top->next->number)
-		sa(a);
-	if (!*flag)
-		return ;
+	biggest = get_max_or_min(stack, stack->top, stack->top, 1);
+	if (biggest == stack->top)
+		ra(stack);
+	else if (biggest == stack->top->next)
+		rra(stack);
+	if (stack->top->number > stack->top->next->number)
+		sa(stack);
 }
 
-static	void	push_to_b(t_stack *a, t_stack *b, bool *flag)
+void	push_to_a(t_stack *a, t_stack *b)
 {
-	int	push_count;
+	t_node	*cheapest;
 
-	push_count = 2;
-	while (a->size > 3 && push_count)
+	while (b->size > 0)
 	{
-		pb(b, a, flag);
-		if (!*flag)
-			return ;
-		push_count--;
+		cheapest = find_cheap(a, b, find_target_a);
+		move_stacks(a, b, cheapest->target, cheapest);
+		pa(a, b);
 	}
-	optimal_push_b(a, b, flag);
-	if (!*flag)
-		return ;
 }
 
-void	turk_algorithm(t_stack *a, t_stack *b, bool *flag)
+static void	ensure_sort(t_stack *stack)
 {
-	if (is_stack_empty(a))
+	t_node	*min;
+
+	if (is_sorted(stack))
+		return ;
+	set_positions(stack);
+	min = get_max_or_min(stack, stack->top, stack->top, 0);
+	if (min->position <= stack->size / 2)
 	{
-		*flag = false;
-		return ;
+		while (stack->top != min)
+			ra(stack);
 	}
-	if (is_sorted(a, a->top))
-		return ;
-	if (a->size == 2)
+	else
 	{
-		sa(a);
-		return ;
+		while (stack->top != min)
+			rra(stack);
 	}
-	else if (a->size > 3)
-		push_to_b(a, b, flag);
-	if (!*flag)
+}
+
+void	turk_algorithm(t_stack *a, t_stack *b)
+{
+	if (is_sorted(a))
 		return ;
-	if (!is_sorted(a, a->top))
-		sort_three(a, flag);
-	if (!*flag)
-		return ;
-	optimal_push_to_a(a, b, flag);
-	if (!*flag)
-		return ;
-	if (!is_sorted(a, a->top))
-		ensure_sort(a, flag);
+	sort_two(a);
+	push_to_b(a, b);
+	sort_three(a);
+	push_to_a(a, b);
+	ensure_sort(a);
 }

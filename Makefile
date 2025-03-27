@@ -1,43 +1,48 @@
-NAME :=  push_swap
-CC := cc
-CFLAGS := -Wall -Wextra -Werror
-LIBFT := libft/libft.a
-LIBFT_DIR := libft
+NAME		:= push_swap
 
-SRC_DIR := src
-SRCS := $(shell find $(SRC_DIR) -name "*.c")
-OBJS := $(SRCS:.c=.o)
+# Directories
+SRC_DIR		:= src
+OBJ_DIR		:= obj
+LIBFT_DIR	:= libft
 
-INCLUDES := -I lib -I $(LIBFT_DIR) -I .
+# Files
+SRC			:= $(addprefix $(SRC_DIR)/, \
+	algorithm.c check.c free.c move.c push.c swap.c reverse.c parse.c rotate.c\
+	algorithm_helper.c cost.c init.c operations.c arg.c	exit.c	main.c utils.c target.c)
 
-# Colors for output
-GREEN := \033[0;32m
-YELLOW := \033[0;33m
-RESET := \033[0m
+OBJ			:= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-all: $(LIBFT) $(NAME)
+# Compiler & Flags
+CC			:= cc
+CFLAGS		:= -Wall -Wextra -Werror -I. -I$(LIBFT_DIR)
+
+# Libft
+LIBFT		:= $(LIBFT_DIR)/libft.a
+
+# Colors (optional)
+GREEN		:= \033[0;32m
+RESET		:= \033[0m
+
+all: $(NAME)
+
+$(NAME): $(LIBFT) $(OBJ)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	@echo "$(GREEN)✓ push_swap compiled successfully!$(RESET)"
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
-	@echo "$(YELLOW)Compiling Libft...$(RESET)"
-	@make -C $(LIBFT_DIR)
-
-$(NAME): $(OBJS) $(LIBFT)
-	@echo "$(YELLOW)Compiling $(NAME)...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
-	@echo "$(GREEN)$(NAME) compiled successfully!$(RESET)"
-
-%.o: %.c
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(MAKE) -C $(LIBFT_DIR)
 
 clean:
-	@echo "$(YELLOW)Cleaning object files...$(RESET)"
-	@rm -f $(OBJS)
-	@make -C $(LIBFT_DIR) clean
+	@rm -rf $(OBJ_DIR)
+	@$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
-	@echo "$(YELLOW)Removing executable and libft...$(RESET)"
 	@rm -f $(NAME)
-	@make -C $(LIBFT_DIR) fclean
+	@$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

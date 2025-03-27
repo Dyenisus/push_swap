@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 23:54:49 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/27 00:03:07 by yesoytur         ###   ########.fr       */
+/*   Created: 2024/10/28 13:04:44 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/19 18:37:14 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../libft.h"
 
-void	pa(t_stack *a, t_stack *b)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int	number;
+	size_t			i;
+	unsigned char	*n_dst;
+	unsigned char	*n_src;
 
-	if (is_stack_empty(b))
-		return ;
-	number = pop(b);
-	push(a, number);
-	write_op("pa");
-}
-
-void	pb(t_stack *b, t_stack *a)
-{
-	int	number;
-
-	if (is_stack_empty(a))
-		return ;
-	number = pop(a);
-	push(b, number);
-	write_op("pb");
+	if (!dst && !src)
+		return (NULL);
+	n_dst = (unsigned char *)dst;
+	n_src = (unsigned char *)src;
+	i = 0;
+	while (i < n)
+	{
+		n_dst[i] = n_src[i];
+		i++;
+	}
+	return (dst);
 }

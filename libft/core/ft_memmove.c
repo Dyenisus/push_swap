@@ -1,48 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm_helper.c                                 :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/27 01:33:41 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/27 13:46:02 by yesoytur         ###   ########.fr       */
+/*   Created: 2024/10/28 13:05:52 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/19 18:37:17 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../libft.h"
 
-void	sort_two(t_stack *a)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (a->size == 2)
-		sa(a);
-	return ;
-}
+	size_t				i;
+	unsigned char		*n_dest;
+	const unsigned char	*n_src;
 
-void	set_positions(t_stack *stack)
-{
-	t_node	*temp;
-	int		i;
-
-	temp = stack->top;
-	i = 0;
-	while (temp)
+	n_dest = (unsigned char *)dst;
+	n_src = (const unsigned char *)src;
+	if (n_dest == n_src || len == 0)
+		return (dst);
+	if (n_dest < n_src)
 	{
-		temp->position = i++;
-		temp = temp->next;
+		ft_memcpy(dst, src, len);
+		return (dst);
 	}
-}
-
-int	max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
-
-int	abs(int a)
-{
-	if (a < 0)
-		return (-a);
-	return (a);
+	i = len;
+	while (i > 0)
+	{
+		n_dest[i - 1] = n_src[i - 1];
+		i--;
+	}
+	return (dst);
 }

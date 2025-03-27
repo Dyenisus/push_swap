@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 23:54:49 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/27 00:03:07 by yesoytur         ###   ########.fr       */
+/*   Created: 2024/10/28 13:04:06 by yesoytur          #+#    #+#             */
+/*   Updated: 2025/03/19 18:37:08 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../libft.h"
 
-void	pa(t_stack *a, t_stack *b)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	number;
+	size_t			i;
+	unsigned char	*n_s1;
+	unsigned char	*n_s2;
 
-	if (is_stack_empty(b))
-		return ;
-	number = pop(b);
-	push(a, number);
-	write_op("pa");
-}
-
-void	pb(t_stack *b, t_stack *a)
-{
-	int	number;
-
-	if (is_stack_empty(a))
-		return ;
-	number = pop(a);
-	push(b, number);
-	write_op("pb");
+	i = 0;
+	n_s1 = (unsigned char *)s1;
+	n_s2 = (unsigned char *)s2;
+	while (i < n)
+	{
+		if (n_s1[i] != n_s2[i])
+			return (n_s1[i] - n_s2[i]);
+		i++;
+	}
+	return (0);
 }
